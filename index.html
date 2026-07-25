@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="STOLEBOOKS – Premium Online Bookstore. Discover thousands of books across all genres." />
+  <title>STOLEBOOKS – Premium Online Bookstore</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+
+  <!-- Razorpay SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════
+     PAGE LOADER
+══════════════════════════════════════ -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <span class="logo-icon"><i class="fas fa-book-open"></i></span>
+        <span class="logo-text">STOLE<span class="accent">BOOKS</span></span>
+      </div>
+      <div class="loader-bar">
+        <div class="loader-fill"></div>
+      </div>
+      <p class="loader-text">Loading your library...</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     TOAST NOTIFICATIONS CONTAINER
+══════════════════════════════════════ -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- ══════════════════════════════════════
+     FLOATING CART BUTTON (Mobile)
+══════════════════════════════════════ -->
+  <button class="fab-cart" id="fabCart" onclick="openCartSidebar()">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="fab-cart-count" id="fabCartCount">0</span>
+  </button>
+
+  <!-- ══════════════════════════════════════
+     HEADER / NAVBAR
+══════════════════════════════════════ -->
+  <header class="header" id="mainHeader">
+    <nav class="navbar">
+      <!-- Logo -->
+      <a class="nav-logo" href="#" onclick="navigateTo('home')">
+        <div class="logo-wrapper">
+          <span class="logo-icon-nav"><i class="fas fa-book-open"></i></span>
+          <div class="logo-text-wrap">
+            <span class="logo-main">STOLE<span class="logo-accent">BOOKS</span></span>
+            <span class="logo-tagline">Your Reading Universe</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="nav-search" id="navSearchBar">
+        <div class="search-input-wrap">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="globalSearchInput" placeholder="Search books, authors, genres..."
+            oninput="handleGlobalSearch(this.value)" onkeydown="handleSearchKeydown(event)" />
+          <button class="search-clear" id="searchClearBtn" onclick="clearSearch()" style="display:none">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="search-suggestions" id="searchSuggestions"></div>
+      </div>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- Wishlist -->
+        <button class="nav-btn" id="wishlistNavBtn" onclick="handleWishlistNav()" title="Wishlist">
+          <i class="fas fa-heart"></i>
+          <span class="nav-btn-count" id="wishlistCount">0</span>
+        </button>
+
+        <!-- Cart -->
+        <button class="nav-btn cart-btn" onclick="openCartSidebar()" title="Shopping Cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="nav-btn-count" id="cartCount">0</span>
+        </button>
+
+        <!-- User -->
+        <div class="user-menu-wrap" id="userMenuWrap">
+          <!-- Logged Out State -->
+          <button class="btn btn-primary btn-sm" id="loginBtn" onclick="navigateTo('login')">
+            <i class="fas fa-user"></i> Sign In
+          </button>
+          <!-- Logged In State -->
+          <div class="user-avatar-btn" id="userAvatarBtn" style="display:none" onclick="toggleUserDropdown()">
+            <div class="avatar-circle" id="userAvatarCircle">
+              <span id="userAvatarInitial">U</span>
+            </div>
+            <span class="user-name-short" id="userNameShort">User</span>
+            <i class="fas fa-chevron-down avatar-chevron"></i>
+          </div>
+          <!-- Dropdown -->
+          <div class="user-dropdown" id="userDropdown" style="display:none">
+            <div class="dropdown-header" id="dropdownHeader">
+              <div class="dropdown-avatar">
+                <span id="dropdownAvatarInitial">U</span>
+              </div>
+              <div>
+                <div class="dropdown-user-name" id="dropdownUserName">User Name</div>
+                <div class="dropdown-user-email" id="dropdownUserEmail">user@email.com</div>
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" onclick="navigateTo('dashboard')">
+              <i class="fas fa-user-circle"></i> My Profile
+            </a>
+            <a class="dropdown-item" href="#" onclick="navigateTo('orders')">
+              <i class="fas fa-box"></i> My Orders
+            </a>
+            <a class="dropdown-item" href="#" onclick="navigateTo('wishlist')">
+              <i class="fas fa-heart"></i> Wishlist
+            </a>
+            <div class="dropdown-divider" id="adminDivider" style="display:none"></div>
+            <a class="dropdown-item admin-item" href="#" id="adminPanelLink" style="display:none"
+              onclick="navigateTo('admin')">
+              <i class="fas fa-shield-alt"></i> Admin Panel
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item logout-item" href="#" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i> Sign Out
+            </a>
+          </div>
+        </div>
+       <!-- Mobile Menu Toggle -->
+      
+        <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+           <i class="fas fa-bars"></i>
+        </button>
+      </div>
+</nav>
+<!-- Mobile Navigation Menu -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-search">
+    <i class="fas fa-search"></i>
+    <input type="text" placeholder="Search books..." oninput="handleGlobalSearch(this.value)" />
+  </div>
+  <div class="mobile-nav-links">
+    <a href="#" onclick="navigateTo('home');toggleMobileMenu()"><i class="fas fa-fas fa-home"></i> Home</a>
+    <a href="#" onclick="navigateTo('books');toggleMobileMenu()"><i class="fas fa-book"></i> All Books</a>
+    <a href="#" onclick="handleWishlistNav();toggleMobileMenu()"><i class="fas fa-heart"></i> Wishlist</a>
+    <a href="#" onclick="navigateTo('dashboard');toggleMobileMenu()"><i class="fas fa-user"></i> Profile</a>
+    <a href="#" onclick="navigateTo('orders');toggleMobileMenu()"><i class="fas fa-box"></i> Orders</a>
+  </div>
+</div>
+
+    <!-- Category Bar -->
+    <div class="category-bar" id="categoryBar">
+      <div class="category-bar-inner">
+        <button class="cat-btn active" data-cat="all" onclick="filterByCategory('all',this)">
+          <i class="fas fa-border-all"></i> All
+        </button>
+        <button class="cat-btn" data-cat="Fiction" onclick="filterByCategory('Fiction',this)">
+          <i class="fas fa-dragon"></i> Fiction
+        </button>
+        <button class="cat-btn" data-cat="Non-Fiction" onclick="filterByCategory('Non-Fiction',this)">
+          <i class="fas fa-landmark"></i> Non-Fiction
+        </button>
+        <button class="cat-btn" data-cat="Self-Help" onclick="filterByCategory('Self-Help',this)">
+          <i class="fas fa-brain"></i> Self-Help
+        </button>
+        <button class="cat-btn" data-cat="Teens & YA" onclick="filterByCategory('Teens & YA',this)">
+          <i class="fas fa-star"></i> Teens & YA
+        </button>
+        <button class="cat-btn" data-cat="Kids" onclick="filterByCategory('Kids',this)">
+          <i class="fas fa-child"></i> Kids
+        </button>
+        <button class="cat-btn" data-cat="Exams" onclick="filterByCategory('Exams',this)">
+          <i class="fas fa-graduation-cap"></i> Exams
+        </button>
+        <button class="cat-btn" data-cat="Medical Exams" onclick="filterByCategory('Medical Exams',this)">
+          <i class="fas fa-stethoscope"></i> Medical
+        </button>
+        <button class="cat-btn" data-cat="Manga" onclick="filterByCategory('Manga',this)">
+          <i class="fas fa-scroll"></i> Manga
+        </button>
+        <button class="cat-btn" data-cat="Award Winners" onclick="filterByCategory('Award Winners',this)">
+          <i class="fas fa-trophy"></i> Award Winners
+        </button>
+        <button class="cat-btn" data-cat="Today's Deal" onclick="filterByCategory('deal',this)">
+          <i class="fas fa-tag"></i> Today's Deal
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════
+     CART SIDEBAR
+══════════════════════════════════════ -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCartSidebar()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-sidebar-header">
+      <h3><i class="fas fa-shopping-cart"></i> Shopping Cart</h3>
+      <button class="cart-close-btn" onclick="closeCartSidebar()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items-list" id="cartItemsList">
+      <!-- Cart items rendered dynamically -->
+    </div>
+    <div class="cart-sidebar-footer" id="cartSidebarFooter">
+      <!-- Cart total and checkout button rendered dynamically -->
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     MAIN CONTENT (SPA ROUTER)
+══════════════════════════════════════ -->
+  <main id="mainContent">
+    <!-- Pages injected here dynamically -->
+  </main>
+
+  <!-- ══════════════════════════════════════
+     BOOK DETAIL MODAL
+══════════════════════════════════════ -->
+  <div class="modal-overlay" id="bookDetailOverlay" onclick="closeBookDetail(event)">
+    <div class="book-detail-modal" id="bookDetailModal">
+      <button class="modal-close-btn" onclick="closeBookDetailModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="book-detail-content" id="bookDetailContent">
+        <!-- Book detail rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+  <footer class="footer" id="mainFooter">
+    <div class="footer-content">
+      <!-- Brand Column -->
+      <div class="footer-col footer-brand">
+        <div class="footer-logo">
+          <i class="fas fa-book-open"></i>
+          <span>STOLE<span class="accent">BOOKS</span></span>
+        </div>
+        <p class="footer-tagline">Your premium destination for books. Discover stories, knowledge, and inspiration.</p>
+        <div class="footer-social">
+          <a href="https://linkedin.com" target="_blank" class="social-btn linkedin" title="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-btn instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://github.com" target="_blank" class="social-btn github" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="social-btn twitter" title="Twitter/X">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="social-btn facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://youtube.com" target="_blank" class="social-btn youtube" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="navigateTo('home')"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="#" onclick="navigateTo('books')"><i class="fas fa-chevron-right"></i> All Books</a></li>
+          <li><a href="#" onclick="filterByCategory('Fiction')"><i class="fas fa-chevron-right"></i> Fiction</a></li>
+          <li><a href="#" onclick="filterByCategory('Non-Fiction')"><i class="fas fa-chevron-right"></i> Non-Fiction</a>
+          </li>
+          <li><a href="#" onclick="filterByCategory('Self-Help')"><i class="fas fa-chevron-right"></i> Self-Help</a>
+          </li>
+          <li><a href="#" onclick="filterByCategory('deal')"><i class="fas fa-chevron-right"></i> Today's Deal</a></li>
+        </ul>
+      </div>
+
+      <!-- Categories -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Categories</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="filterByCategory('Manga')"><i class="fas fa-chevron-right"></i> Manga</a></li>
+          <li><a href="#" onclick="filterByCategory('Kids')"><i class="fas fa-chevron-right"></i> Kids</a></li>
+          <li><a href="#" onclick="filterByCategory('Teens & YA')"><i class="fas fa-chevron-right"></i> Teens & YA</a>
+          </li>
+          <li><a href="#" onclick="filterByCategory('Exams')"><i class="fas fa-chevron-right"></i> Exams</a></li>
+          <li><a href="#" onclick="filterByCategory('Medical Exams')"><i class="fas fa-chevron-right"></i> Medical
+              Exams</a></li>
+          <li><a href="#" onclick="filterByCategory('Award Winners')"><i class="fas fa-chevron-right"></i> Award
+              Winners</a></li>
+        </ul>
+      </div>
+
+      <!-- Account -->
+      <div class="footer-col">
+        <h4 class="footer-heading">My Account</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="navigateTo('login')"><i class="fas fa-chevron-right"></i> Sign In</a></li>
+          <li><a href="#" onclick="navigateTo('register')"><i class="fas fa-chevron-right"></i> Register</a></li>
+          <li><a href="#" onclick="navigateTo('dashboard')"><i class="fas fa-chevron-right"></i> My Profile</a></li>
+          <li><a href="#" onclick="navigateTo('orders')"><i class="fas fa-chevron-right"></i> Order History</a></li>
+          <li><a href="#" onclick="navigateTo('wishlist')"><i class="fas fa-chevron-right"></i> Wishlist</a></li>
+          <li><a href="#" onclick="openCartSidebar()"><i class="fas fa-chevron-right"></i> Cart</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Contact Us</h4>
+        <ul class="footer-contact">
+          <li><i class="fas fa-envelope"></i> support@stolebooks.com</li>
+          <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+          <li><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra, India</li>
+          <li><i class="fas fa-clock"></i> Mon-Sat: 9AM – 6PM</li>
+        </ul>
+        <div class="payment-icons">
+          <span title="Razorpay"><i class="fas fa-credit-card"></i> Razorpay</span>
+          <span title="UPI"><i class="fas fa-mobile-alt"></i> UPI</span>
+          <span title="COD"><i class="fas fa-money-bill-wave"></i> COD</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 STOLEBOOKS. All rights reserved. Made with <i class="fas fa-heart" style="color:#e11d48"></i> in
+        India.</p>
+      <div class="footer-bottom-links">
+        <a href="#" onclick="event.preventDefault();navigateTo('privacy-policy')">Privacy Policy</a>
+        <a href="#" onclick="event.preventDefault();navigateTo('refund-policy')">Refund Policy</a>
+        <a href="#" onclick="event.preventDefault();navigateTo('terms')">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+     JAVASCRIPT FILES
+══════════════════════════════════════ -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/books.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/payment.js"></script>
+  <script src="js/pages.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>

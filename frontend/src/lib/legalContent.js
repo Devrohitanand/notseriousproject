@@ -1,0 +1,91 @@
+// Legal page content extracted verbatim from official StoleBooks policy PDF
+export const legalPages = {
+  'refund': {
+    title: 'Refund & Return Policy',
+    seo: 'StoleBooks refund and return policy — 48-hour return window, refund process, and non-returnable situations.',
+    intro: 'At Stolebooks, we are committed to providing a reliable, transparent, and student-friendly experience. Every book goes through a quality check process before it reaches you. However, if something isn\'t right, we\'ve got you covered.',
+    sections: [
+      { heading: 'Returns Eligibility', text: 'You can request a return or refund if:', list: ['You receive a damaged book', 'You receive an incorrect book', 'The book condition is significantly different from what was described'] },
+      { heading: 'Return Window', list: ['Return requests must be raised within 48 hours of delivery', 'Requests made after this period may not be accepted'] },
+      { heading: 'How to Request a Return', text: 'To initiate a return, please email us with the following details:', list: ['Order ID', 'Brief description of the issue', 'Clear photos/videos showing the problem'], footer: 'Our team will review your request and respond promptly.' },
+      { heading: 'Refund Process', list: ['Once your request is approved, you will be guided on the return process', 'After we receive and inspect the book, refund will be processed within 5–7 working days', 'Amount will be credited to your original payment method'] },
+      { heading: 'Non-Returnable Situations', text: 'Returns will not be accepted in the following cases:', list: ['Minor wear and tear (as expected with pre-owned books)', 'Change of mind after purchase', 'Requests made after the 48-hour window'] },
+      { heading: 'Our Quality & Sustainability Promise', text: 'As a platform promoting reuse and sustainability, every book may show slight signs of previous use — and that\'s part of its journey. By choosing Stolebooks, you\'re not just saving money, you\'re also:', list: ['Reducing waste', 'Supporting book reuse', 'Contributing to a more sustainable future'] },
+    ],
+    contact: true,
+    contactNote: 'We appreciate your trust in Stolebooks.',
+  },
+  'shipping': {
+    title: 'Shipping Policy',
+    seo: 'StoleBooks shipping policy — processing time, delivery timeline, shipping charges, and order tracking.',
+    intro: 'At Stolebooks, we ensure every book reaches you with care. Since each book is sourced from sellers and quality-checked before dispatch, our shipping process is designed to balance reliability, transparency, and quality assurance.',
+    sections: [
+      { heading: 'Order Processing', list: ['Orders are processed within 2–4 business days', 'Each book is first collected from the seller and verified before dispatch', 'Processing time may vary slightly based on seller availability'] },
+      { heading: 'Delivery Timeline', list: ['Estimated delivery time: 5–10 business days', 'Delivery timelines may vary depending on your location and courier services'] },
+      { heading: 'Shipping Charges', list: ['A delivery & handling fee is applied at checkout', 'Typically ranges between ₹80 – 150, depending on logistics and location'] },
+      { heading: 'Order Tracking', text: 'Once your order is shipped, tracking details will be shared via:', list: ['Email', 'WhatsApp'], footer: 'You can use these details to track your order in real-time.' },
+      { heading: 'Sustainable Shipping Approach', text: 'As part of our commitment to sustainability, our process involves reusing books responsibly rather than mass shipping new inventory. This may slightly impact timelines, but helps:', list: ['Reduce waste', 'Promote reuse', 'Support eco-conscious consumption'] },
+    ],
+    contact: true,
+    contactNote: 'Thank you for choosing Stolebooks ♡',
+  },
+  'about': {
+    title: 'About Us',
+    seo: 'StoleBooks — a student-first academic marketplace giving books a second life through sustainable reuse.',
+    intro: 'Every book has a story beyond the one printed on its pages.',
+    sections: [
+      { heading: '', text: 'At Stolebooks, we believe books are not meant to be used once and forgotten. They are meant to travel, to inspire multiple minds, and to live many lives. That\'s why we\'ve built a platform where stories continue their journey from one reader to another.' },
+      { heading: '', text: 'Stolebooks is more than just a marketplace for pre-owned books. It\'s a step toward a more sustainable and responsible way of reading. By giving books a second life, we help reduce paper waste, minimize environmental impact, and promote a culture of reuse over disposal.' },
+      { heading: '', text: 'In a world driven by fast consumption, we choose a different path — one where knowledge is shared, resources are valued, and small actions create a bigger impact on the planet.' },
+      { heading: 'What makes us different?', text: 'We don\'t just connect buyers and sellers, we carefully collect, check, and dispatch books to ensure a reliable and satisfying experience. Because for us, it\'s not just about selling books — it\'s about delivering stories with purpose.' },
+      { heading: 'Why Stolebooks?', text: 'Because every reused book saves resources, reduces waste, and keeps a story alive.' },
+      { heading: 'Our Mission', text: 'To make reading affordable and accessible while promoting sustainability through the reuse of books.' },
+      { heading: 'Our Vision', text: 'To create a future where books are shared, not wasted — and where every reader contributes to a greener planet.' },
+      { heading: 'Our Promise', text: 'Simple. Trusted. Sustainable. That\'s the Stolebooks way.' },
+    ],
+    tagline: 'Read more. Waste less. Share stories.',
+  },
+  'privacy': {
+    title: 'Privacy Policy',
+    seo: 'StoleBooks privacy policy — how we collect, use, and safeguard your personal information.',
+    intro: 'At Stolebooks, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our platform.',
+    updated: 'Last Updated: June 2026',
+    sections: [
+      { heading: '1. Information We Collect', text: 'We may collect the following types of information when you use our website:', list: ['Personal details such as your name, email address, and phone number', 'Shipping and delivery address', 'Payment information (processed securely through third-party payment gateways)'] },
+      { heading: '2. How We Use Your Information', text: 'The information we collect is used to:', list: ['Process and fulfill your orders', 'Communicate order updates, notifications, and support responses', 'Improve our services, platform performance, and user experience'] },
+      { heading: '3. Data Protection & Security', text: 'We take appropriate measures to protect your personal information:', list: ['Your data is stored securely using industry-standard safeguards', 'Payment details are handled through trusted third-party providers and are not stored by us', 'We do not sell, rent, or share your personal data with unauthorized third parties'] },
+      { heading: '4. Sharing of Information', text: 'We may share limited information only when necessary to:', list: ['Complete deliveries through logistics partners', 'Process payments via secure payment gateways', 'Comply with legal obligations, if required'], footer: 'All such third parties are expected to handle your data responsibly and securely.' },
+      { heading: '5. Cookies & Tracking Technologies', list: ['We may use cookies and similar technologies to enhance your browsing experience', 'Cookies help us understand user behavior and improve website functionality', 'You can choose to disable cookies through your browser settings'] },
+      { heading: '6. Your Rights & Choices', text: 'You have the right to:', list: ['Access or update your personal information', 'Request deletion of your data (subject to legal or operational requirements)', 'Opt out of non-essential communications'] },
+      { heading: '7. Changes to This Policy', text: 'Stolebooks reserves the right to update or modify this Privacy Policy at any time. Any changes will be reflected with an updated date. Continued use of the platform constitutes acceptance of the revised policy.' },
+    ],
+    contact: true,
+    contactNote: 'By using our website, you acknowledge that you have read, understood, and agreed to this Privacy Policy.',
+  },
+  'terms': {
+    title: 'Terms & Conditions',
+    seo: 'StoleBooks terms and conditions — platform role, user responsibilities, pricing, and liability.',
+    intro: 'By accessing or using the Stolebooks website, you agree to comply with and be bound by the following Terms & Conditions. Please read them carefully before using our platform.',
+    updated: 'Last Updated: June 2026',
+    sections: [
+      { heading: '1. Platform Role', text: 'Stolebooks operates as an intermediary platform that:', list: ['Connects buyers and sellers of pre-owned books', 'Collects, verifies, and dispatches books before delivery', 'Ensures a structured and reliable transaction process'], footer: 'Stolebooks does not manufacture, publish, or own the books listed on the platform. We solely facilitate transactions between users.' },
+      { heading: '2. User Responsibilities', text: 'By using our platform, you agree to:', list: ['Provide accurate, current, and complete information', 'Use the platform only for lawful purposes', 'Avoid fraudulent, misleading, or abusive activities'], footer: 'Stolebooks reserves the right to suspend or terminate user accounts that violate these terms without prior notice.' },
+      { heading: '3. Pricing & Payments', list: ['Book prices are determined based on seller inputs and platform evaluation', 'Prices may include a service fee or platform commission', 'Full payment must be made at the time of purchase through approved payment methods'] },
+      { heading: '4. Order Acceptance & Cancellation', list: ['All orders are subject to availability and verification', 'An order is confirmed only after successful processing and validation', 'Stolebooks reserves the right to cancel or refuse any order at its discretion'] },
+      { heading: '5. Limitation of Liability', text: 'Stolebooks shall not be held responsible for:', list: ['Delays caused by third-party logistics or delivery partners', 'Issues arising due to incorrect or incomplete information provided by users', 'Minor variations in product condition, as books are pre-owned'] },
+      { heading: '6. Sustainability Commitment', text: 'Stolebooks promotes a circular economy by encouraging the reuse of books. By using our platform, you contribute to:', list: ['Reduced waste and paper consumption', 'Responsible reuse of resources', 'A more sustainable and eco-friendly ecosystem'] },
+      { heading: '7. Changes to Terms', text: 'Stolebooks reserves the right to update, modify, or replace these Terms & Conditions at any time without prior notice. Continued use of the platform after changes are made constitutes acceptance of the revised terms.' },
+    ],
+    contact: true,
+    contactNote: 'By using this website, you acknowledge that you have read, understood, and agreed to these Terms & Conditions.',
+  },
+};
+
+// Placeholder contact details preserved as requested — replace when official ones are ready
+export const contactInfo = {
+  email: '[your email address]',
+  whatsapp: '[your number]',
+  instagram: '@stolebooks.official',
+  hours: 'Monday – Saturday · 10:00 AM – 7:00 PM',
+  responseTime: 'We strive to respond to all queries within 24 hours.',
+};
